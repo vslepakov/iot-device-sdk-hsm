@@ -1,0 +1,10 @@
+﻿{
+  "IotHubHostname": "XXX.azure-devices.net",
+  "DeviceId": "",
+  "OpenSslEngine": "pkcs11",
+  "CaCertPaths": [
+    "<PATH_TO_CA_THAT_ISSUED_YOUR_DEVICE_CERT>"
+  ],
+  "DeviceCert": "<PATH_TO_THE_PUBLIC_PORTION_OF_THE_DEVICE_CERT_AS_PEM>",
+  "DeviceCertPrivateKeyHsmHandle": "<e.g. pkcs11:token=edge;object=device-key;type=private?pin-value=1234>"
+}
