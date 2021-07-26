@@ -1,4 +1,4 @@
-# Azure IoT Identity Service Integration
+# Azure IoT Device SDKs with x509 certificates backed by HSM
 
 > **Disclaimer:** This repo DOES NOT contain production ready code (very limited error handling etc.) and only demonstrates the approach.
 
