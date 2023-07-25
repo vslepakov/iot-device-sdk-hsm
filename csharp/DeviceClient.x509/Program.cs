@@ -50,6 +50,7 @@ namespace DeviceClient.x509
             
 #pragma warning disable CA1416 // Validate platform compatibility
             deviceCert = deviceCert.CopyWithPrivateKey(new RSAOpenSsl(pkeyHandle));
+            Console.WriteLine($"Cert has private key: {deviceCert.HasPrivateKey}; Public Key: {deviceCert.GetPublicKeyString()}");
 #pragma warning restore CA1416 // Validate platform compatibility
 
             return new DeviceAuthenticationWithX509Certificate(appConfig.DeviceId, deviceCert, certChain);
