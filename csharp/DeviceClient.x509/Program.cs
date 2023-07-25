@@ -78,22 +78,7 @@ namespace DeviceClient.x509
         private static SafeEvpPKeyHandle GetPrivateKeyHandle(AppConfig appConfig)
         {
             Console.WriteLine($"Using OpenSSL Engine {appConfig.OpenSslEngine}");
-
-            var engine = NativeMethods.ENGINE_by_id(appConfig.OpenSslEngine);
-            _ = NativeMethods.ENGINE_init(engine);
-            var pkey = NativeMethods.ENGINE_load_private_key(engine, appConfig.DeviceCertPrivateKeyHsmHandle, IntPtr.Zero, IntPtr.Zero);
-
-#pragma warning disable CA1416 // Validate platform compatibility
-            Console.WriteLine($"OpenSSL version: {SafeEvpPKeyHandle.OpenSslVersion}");
-
-            var pkeyHandle = new SafeEvpPKeyHandle(pkey, true);
-            if (pkeyHandle.IsInvalid)
-#pragma warning restore CA1416 // Validate platform compatibility
-            {
-                throw new InvalidOperationException($"Engine: unable to find private key with handle: {appConfig.DeviceCertPrivateKeyHsmHandle}");
-            }
-
-            return pkeyHandle;
+            return SafeEvpPKeyHandle.OpenPrivateKeyFromEngine(appConfig.OpenSslEngine, appConfig.DeviceCertPrivateKeyHsmHandle);
         }
 
         private static Task WhenCancelled(CancellationToken cancellationToken)
